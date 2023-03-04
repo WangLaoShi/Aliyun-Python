@@ -11,3 +11,5 @@
 [All-inclusive Python cheatsheet](https://www.pythoncheatsheet.org/)
 
 [DataCamp Python Cheat Sheet for Beginners](./Files/DataCamp/Python_Cheat_Sheet_for_Beginners.pdf)
+
+[quickref](https://quickref.me/python)
