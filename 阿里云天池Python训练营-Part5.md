@@ -12,223 +12,211 @@
 
 ![TWy9b7](https://upiclw.oss-cn-beijing.aliyuncs.com/uPic/TWy9b7.jpg)
 
-Excel是我们工作中经常使用的一种工具，对于资料分析来说，这也是处理资料最基础的工具。很多传统行业的资料分析师甚至只要掌握Excel和SQL即可。
+## Excel函数 | 相信这些也是你最常用这几个！
 
-对于初学者，有的时候并不需要急于苦学R语言等专业工具（当然会也是加分项），因为Excel涵盖的功能足够多，也有很多统计、分析、视觉化的插件。只不过我们平时处理资料的时候，很多函数都不知道怎麽用。
+![maoDFp](https://upiclw.oss-cn-beijing.aliyuncs.com/uPic/maoDFp.jpg)
 
-关于Excel的进阶学习，主要分为两块：一个是资料分析常用的Excel函数，另一个分享用Excel做一个简单完整的分析。这篇文章将介绍资料分析常用的43个Excel函数及用途。
+### 01. MID函数
 
-关于函数：
-Excel的函数实际上就是一些複杂的计算公式，函数把複杂的计算步骤交由程序处理，只要按照函数格式录入相关参数，就可以得出结果。如求一个区域的和，可以直接用SUM(A1:C100)的形式。
+函数定义：从一个文本字符串的指定位置开始,截取指定数目的字符
 
-所以对于函数，不用刻意记刻意背，只要知道比如“选取栏位，用Left／Right／Mid”函数，并且需要哪些参数怎麽用就行了，複杂的就交给万能的google吧。
+使用格式：MID(text, start_num, num_chars)
 
+例子：
 
-## 一、关联匹配类
-经常性的，需要的资料不在同一个excel表或同一个excel表不同sheet中，资料太多，copy麻烦也不准确，该如何整合呢？这类函数就是用于多表关联或者列栏比对时的场景，而且表越複杂，用得越多。
+![rmzOuk](https://upiclw.oss-cn-beijing.aliyuncs.com/uPic/rmzOuk.jpg)
 
-函数HLOOKUP和VLOOKUP都是用来在表格中查找资料。
+### 02. CONCATENATE函数
 
-### 1、VLOOKUP
-功能：用于查找首列满足条件的元素。
-语法：=VLOOKUP（要查找的值，要在其中查找值的区域，区域中包含返回值的列号，精确匹配或近似匹配 — 指定为 0/FALSE 或 1/TRUE）。
+函数定义：将多个字符文本或单元格中的数据连接在一起,显示在一个单元格中
 
-![txKG8Q](https://upiclw.oss-cn-beijing.aliyuncs.com/uPic/txKG8Q.jpg)
+使用格式：CONCATENATE(text1,text2,……)
 
-### 2、HLOOKUP
-功能：搜索表的顶行或值的阵列中的值，并在表格或阵列中指定的栏的同一lan中返回一个值。
-语法：=VLOOKUP（要查找的值，要在其中查找值的区域，区域中包含返回值的行号，精确匹配或近似匹配 — 指定为 0/FALSE 或 1/TRUE）。
-区别：HLOOKUP返回的值与需要查找的值在同一列上，而VLOOKUP返回的值与需要查找的值在同一行上。
+重点：也可以用&（和号）运算符代替函数CONCATENATE实现文本项的合并
 
-### 3、INDEX
-功能：返回表格或区域中的值或引用该值。
-语法：= INDEX(要返回值的储存格区域或阵列,所在列,所在栏)
+例子：
 
-![eMF0hG](https://upiclw.oss-cn-beijing.aliyuncs.com/uPic/eMF0hG.jpg)
+![qLkAEU](https://upiclw.oss-cn-beijing.aliyuncs.com/uPic/qLkAEU.jpg)
 
-### 4、MATCH
-功能：用于返回指定内容在指定区域（某列或者某栏）的位置。
-语法：= MATCH (要返回值的储存格区域或阵列，查找的区域，查找方式)
+### 03. AND函数
 
-### 5、RANK
-功能：求某一个数值在某一区域内一组数值中的排名。
-语法：=RANK(参与排名的数值, 排名的数值区域, 排名方式-0是降序-1是升序-默认为0）。
+函数定义：检测所有的条件是否为真
 
-### 6、Row
-功能：返回储存格所在的列
+使用格式：AND(logical1,logical2,……logical30)
 
-### 7、Column
-功能：返回储存格所在的栏
+注意事项：
+如果指定的区域中不包含逻辑值或数值时,函数AND返回错误值#VALUE!.
+Logical1,logical2,……logical30表示待检测的1到30个条件值,各条件值可为TRUE或FALSE
 
-### 8、Offset
-功能：从指定的基准位置按列栏偏移量返回指定的引用
-语法：＝Offset（指定点，偏移多少列，偏移多少栏，返回多少列，返回多少栏）
+例子：
 
-## 二、清理处理类
-资料处理之前，需要对提取的资料进行初步清理，如清除字串空格，合并储存格、替换、截取字串、查找字串出现的位置等。
+![qTpsbP](https://upiclw.oss-cn-beijing.aliyuncs.com/uPic/qTpsbP.jpg)
 
-清除字串空格：使用Trim/Ltrim/Rtrim
-合并储存格：使用concatenate
-截取字串：使用Left/Right/Mid
-替换储存格中内容：Replace/Substitute
-查找文本在储存格中的位置：Find/Search
+可以与IF函数连用
 
-### 9、Trim
-功能：清除掉字串两边的空格
+![53P0NO](https://upiclw.oss-cn-beijing.aliyuncs.com/uPic/53P0NO.jpg)
 
-### 10、Ltrim
-功能：清除储存格右边的空格
+### 04. IF函数
 
-### 11、Rtrim
-功能：清除储存格左边的空格
+函数定义：根据条件满足与否返回不同的值
+使用格式：
+IF(logical_test,value_if_true,value_if_false)
+白话：IF(条件,与条件一样时运算这个,与条件不同时运算这个)
+例子：
 
-### 12、Concatenate
-语法：=Concatenate(储存格1，储存格2……)
-合并储存格中的内容，还有另一种合并方式是&，需要合并的内容过多时，concatenate效率更快。
+![dieC9s](https://upiclw.oss-cn-beijing.aliyuncs.com/uPic/dieC9s.jpg)
 
-### 13、Left
-功能：从左截取字串
-语法：=Left(值所在储存格，截取长度)
+![4Znhla](https://upiclw.oss-cn-beijing.aliyuncs.com/uPic/4Znhla.jpg)
 
-### 14、Right
-功能：从右截取字串
-语法：= Right (值所在储存格，截取长度)
+公式如下：
 
-### 15、Mid
-功能：从中间截取字串
-语法：= Mid（指定字串，开始位置，截取长度）
+'=IF(C13>=$H$10,$I$10,IF(C13>=$H$9,$I$9,IF(C13>=$H$8,$I$8,IF(C13>=$H$7,$I$7,IF(C13>=$H$6,$I$6,IF(C13>=$H$5,$I$5,0))))))
 
-![ILNLbF](https://upiclw.oss-cn-beijing.aliyuncs.com/uPic/ILNLbF.jpg)
+### 05. DATEDIF函数
 
-### 16、Replace
-功能：替换掉储存格的字串
-语法：=Replace（指定字串，哪个位置开始替换，替换几个字元，替换成什麽）
+函数定义：计算期间内的年数、月数、天数
 
-### 17、Substitute
-和replace接近，不同在于Replace根据位置实现替换，需要提供从第几位开始替换，替换几位，替换后的新的文本；而Substitute根据文本内容替换，需要提供替换的旧文本和新文本，以及替换第几个旧文本等。因此Replace实现固定位置的文本替换，Substitute实现固定文本替换。
+使用格式：
 
-![0P72Zc](https://upiclw.oss-cn-beijing.aliyuncs.com/uPic/0P72Zc.jpg)
+* =DATEDIF(start_date,end_date,"y")
+* =DATEDIF(start_date,end_date,"m")
+* =DATEDIF(start_date,end_date,"d")
+* =DATEDIF(start_date,end_date,"ym")
+* =DATEDIF(start_date,end_date,"yd")
+* =DATEDIF(date1,date2,"md")
 
-### 18、Find
-功能：查找文本位置
-语法：=Find（要查找字元，指定字串，第几个字元）
+白话：DATEDIF(开始日期,结束日期,要计算的单位)
 
-### 19、Search
-功能：返回一个指定字元或文本字串在字串中第一次出现的位置 ,从左到右查找
-语法：=search（要查找的字元，字元所在的文本，从第几个字元开始查找）
-Find和Search这两个函数功能几乎相同，实现查找字元所在的位置，区别在于Find函数精确查找，区分大小写；Search函数模糊查找，不区分大小写。
+注意：
 
-### 20、Len
-功能：文本字串的字元个数
+* y:计算满年数,返回值为0以上的整数
+* m:计算满月数,返回值为0以上的整数;d:计算满日数,返回值为0以上的整数
+* ym:计算不满一年的月数,返回值为1~11之间的整数
+* yd计算不满一年的天数,返回值为0~365之间的整数
+* md:计算不满意一个月的天数,返回值为0~30之间的整数
 
-### 21、Lenb
-功能：返迴文本中所包含的字元数
+例子：
 
-## 三、逻辑运算类
-### 22、IF
-功能：使用逻辑函数 IF 函数时，如果条件为真，该函数将返回一个值；如果条件为假，函数将返回另一个值。
-语法：=IF(条件, true时返回值, false返回值)
+![UGACYk](https://upiclw.oss-cn-beijing.aliyuncs.com/uPic/UGACYk.jpg)
 
-### 23、AND
-功能：逻辑判断，相当于“并”。
-语法：全部参数为True，则返回True，经常用于多条件判断。
+### 06. COUNTIF函数
 
-### 24、OR
-功能：逻辑判断，相当于“或”。
-语法：只要参数有一个True，则返回Ture，经常用于多条件判断。
+函数定义：计算满足条件的单元格计数
+使用格式：COUNTIF(range,criteria)
 
-## 四、计算统计类
-在利用excel表格统计资料时，常常需要使用各种excel自带的公式，也是最常使用的一类，重要性不言而喻，不过excel都自带快捷功能。
+白话：COUNTIF(要找的内容所在的区域,要找的内容)
 
-MIN函数：找到某区域中的最小值
-MAX函数：找到某区域中的最大值
-AVERAGE函数：计算某区域中的平均值
-COUNT函数： 计算某区域中包含数字的储存格的数目
-COUNTIF函数：计算某个区域中满足给定条件的储存格数目
-COUNTIFS函数：统计一组给定条件所指定的储存格数
-SUM函数：计算单元格区域中所有数值的和
-SUMIF函数：对满足条件的储存格求和
-SUMIFS函数：对一组满足条件指定的储存格求和
-SUMPRODUCT函数：返回相应的阵列或区域乘积的和
+注意事项：
 
-### 25、MIN
-功能：找到某区域中的最小值
+指定的条件必须用 " " (双引号括起来),如 ">=100、"男" 等.但,当指定条件为引用单元格时无需双引号括住.通配符使用参看SUMIF函数中的通配符说明
 
-### 26、MAX函数
-功能：找到某区域中的最大值
+例子：
 
-### 27、AVERAGE
-功能：计算某区域中的平均值
+![bRX6ra](https://upiclw.oss-cn-beijing.aliyuncs.com/uPic/bRX6ra.jpg)
 
-### 28、COUNT
-功能：计算含有数字的储存格的个数。
+COUNTIF函数几种用法：
 
-### 29、COUNTIF
-功能：计算某个区域中满足给定条件的储存格数目
-语法：=COUNTIF(储存格1: 储存格2 ,条件)
-比如=COUNTIF(Table1!A1:Table1!C100, “YES” ) 计算Table1中A1到C100区域储存格中值为”YES”的储存格个数
+* 求包含值139的单元格数量 '=COUNTIF($D$4:$D$14,139)
+* 求包含负值的单元格数量 '=COUNTIF($C$4:$C$14,"<0")
+* 求不等于0 的单元格数量 '=COUNTIF($C$4:$C$14,"<>0")
+* 求大于等于5的单元格数量 '=COUNTIF($C$4:$C$14,">=5")
+* 求等于单元格B45中内容的单元格数量 '=COUNTIF($B$4:$B$14,B4)
+* 求大于单元格E45中内容的单元格数量 '=COUNTIF($E$4:$E$14,">"&E4)
+* 求包含文本内容的单元格数量 '=COUNTIF($B$4:$B$14,"*")
+* 求包含六个字符内容的单元格数量 '=COUNTIF($B$4:$B$14,"??????")
+* 求在文本中任何位置包含单词"文胸"字符内容的单元格数量 '=COUNTIF($B$4:$B$14,"*文胸*")
+* 求包含以英文"D"(不分大小写)开头内容的单元格数量 '=COUNTIF($B$4:$B$14,"D*")
+* 求包含当前日期的单元格数量 '=COUNTIF($E$4:$E$14,TODAY())
+* 求大于平均值的单元格数量 '=COUNTIF($D$4:$D$14,">"&AVERAGE($D$5:$D$14))
 
-![COq5BL](https://upiclw.oss-cn-beijing.aliyuncs.com/uPic/COq5BL.jpg)
+![nrLoTJ](https://upiclw.oss-cn-beijing.aliyuncs.com/uPic/nrLoTJ.jpg)
 
-### 30、COUNTIFS
-功能：统计一组给定条件所指定的储存格数
-语法：=COUNTIFS(第一个条件区域，第一个对应的条件，第二个条件区域，第二个对应的条件，第N个条件区域，第N个对应的条件)
-比如：=COUNTIFS(Table1!A1: Table1!A100, “YES”,Table1!C1: Table1!C100, “NO” ) 计算Table1中A1到A100区域储存格中值为”YES”,而且同时C区域值为”NO”的储存格个数
+统计区域内不重复数据数
 
-### 31、SUM
-计算储存格区域中所有数值的和
+![Dea4CU](https://upiclw.oss-cn-beijing.aliyuncs.com/uPic/Dea4CU.jpg)
 
-### 32、SUMIF
-功能：求满足条件的储存格和
-语法：=SUMIF(储存格1: 储存格2 ,条件,储存格3: 储存格4)
+公式：'{=SUM(1/COUNTIF(D5:D14,D5:D14))}
 
+这里其实输入的是=SUM(1/COUNTIF(D5:D14,D5:D14))，然后按ctrl+shift+enter三键结束。
 
-### 32、SUMIFS
-功能：对一组满足条件指定的储存格求和
-语法：=SUMIFS（实际求和区域，第一个条件区域，第一个对应的求和条件，第二个条件区域，第二个对应的求和条件，第N个条件区域，第N个对应的求和条件）
-比如=SUMIFS(Table1!C1:Table1!C100，Table1!A1: Table1!A100, “YES” ,Table1!B1:Table1B100, “NO” ) 计算Table1中C1到C100区域,同时相应行A列值为”YES”，而且对应B列值为”NO”的储存格的和。
+下面公式加了IF判断是否是空格的嵌套,避免出现#DIV/0!错误.
 
-![fsSBkP](https://upiclw.oss-cn-beijing.aliyuncs.com/uPic/fsSBkP.jpg)
+'{{=SUM(IF(D5:D14<>"",1/COUNTIF(D5:D14,D5:D14)))}}
 
-### 33、SUMPRODUCT
-功能：返回相应的阵列或区域乘积的和
-语法： =SUMPRODUCT(储存格1: 储存格2 ,储存格3: 储存格4)
-比如：=SUMPRODUCT(Table1!A1:Table1!A100, Table2!B1Table2!B100) 计算表格1的A1到A100与表格2的B1到B100的乘积和，即A1*B1+A2*B2+A3*B3+…
+或者可以用
 
-### 34、Stdev
-统计型函数，求标准差。
+=SUM(IF(ISBLANK(D5:D14),"",1/COUNTIF(D5:D14,D5:D14))),然后按ctrl+shift+enter三键结束。
 
-### 35、Substotal
-语法：=Substotal（引用区域，参数）
-汇总型函数，将平均值、计数、最大最小、相乘、标准差、求和、方差等参数化，换言之，只要会了这个函数，上面的都可以抛弃掉了。
+### 07. SUMIF函数
 
-### 36、Int／Round
-取整函数，int向下取整，round按小数位取数。
-round(3.1415,2)=3.14 ;
-round(3.1415,1)=3.1
+函数定义：对满足条件的单元格的数值求和
 
-## 五、时间序列类
-专门用于处理时间格式以及转换。
+使用格式：SUMIF(range,criteria,sum_range)
 
-### 37、TODAY
-返回今天的日期，动态函数。
+参数解释：
 
-### 38、NOW
-返回当前的时间，动态函数。
+range：为用于条件判断的单元格区域.指定作为搜索对象的单元格区域
+Criteria：为确定哪些单元格将被相加求和的条件,其形式可以为数字、表达式、文本或通配符
+Sum_range：是需要求和的实际单元格
 
-### 39、YEAR
-功能：返回日期的年份。
+几种基本用法：
 
-### 40、MONTH
-功能：返回日期的月份。
+![cBdHhX](https://upiclw.oss-cn-beijing.aliyuncs.com/uPic/cBdHhX.jpg)
 
-### 41、DAY
-功能：返回以序列数表示的某日期的天数。
+1. 以“文胸”开头的任意文本的销量
 
-### 42、WEEKDAY
-功能：返回对应于某个日期的一周中的第几天。 默认情况下，天数是 1（星期日）到 7（星期六）范围内的整数。
-语法：=Weekday(指定时间，参数)
+    =SUMIF($B$4:$B$14,"文胸*",$C$4:$C$14)
 
-### 43、Datedif
-功能：计算两个日期之间相隔的天数、月数或年数。
-语法：=Datedif（开始日期，结束日期，参数）
+    注意：如果是“文胸~*”，则此时的“*”就是字符，不是通配符，需要准确查找文本为“文胸*”的销量合计
+
+2. “文胸”后面一定是三个字符的文本的销量
+
+    =SUMIF($B$4:$B$4,"文胸???",$C$4:$C$4)
+
+    注意：如果是“文胸~???”，则此时的“?”就是字符，不是通配符，需要准确查找文本为“文胸???”的销量合计
+
+3. 销售大于等于5件的销售合计
+
+    =SUMIF($C$4:$C$14,">=5",$C$4:$C$14)
+
+4. 查找内容为c20的销售合计
+
+    =SUMIF($B$4:$B$14,C20,$C$4:$C$14)
+
+### 08. DCOUNT函数
+
+函数定义：计算满足条件的数值的个数
+
+使用格式：DCOUNT(database,field,criteria)
+
+参数定义：
+
+* database: 构成列表或数据库的单元格区域.数据库是包含一组相关数据的列表,其中包含相关信息的行为记录,而包含数据的列为字段.列表的第一行包含着每一列的标志项.
+
+* Field: 指定函数所使用的数据列.列表中的数据列必须在第一行具有标志项.Field可以是文本,即两端带引号的标志项,如"使用年数"或"产量"；此外,Field也可以是代表列表中数据列位置的数字：1表示第一列,2表示第二列,等等.
+
+* Criteria: 为一组包含给定条件的单元格区域.可以为参数criteria指定任意区域,只要它至少包含一个列标志和列标志下方用于设定条件的单元格.
+
+注意：
+
+参数field为可选项,如果省略,函数DCOUNT返回数据库中满足条件criteria的所有记录数
+
+例子：
+
+![r5lurW](https://upiclw.oss-cn-beijing.aliyuncs.com/uPic/r5lurW.jpg)
+
+公式：
+
+1. 指定项目的有效支出
+
+    =DCOUNT(B3:E9,E3,G3:G4)
+
+    这里的结果是2，返回的是10月8日和10月10日的值。
+
+2. 指定项目的支出
+
+    =DCOUNT(B3:E9,,G3:G4)
+
+    参数field为可选项,如果省略,函数DCOUNT返回数据库中满足条件criteria的所有记录数
+
+    这里的结果是3，返回的是10月8日，10月10日和10月15日的值。
