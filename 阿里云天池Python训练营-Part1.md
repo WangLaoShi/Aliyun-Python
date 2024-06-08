@@ -675,7 +675,8 @@ print('杨辉' in  'IT 部杨辉 2000') # 返回 True
 print('杨辉' not in  'IT 部杨辉 2000') # 返回 False
 print('杨小辉' in  'IT 部杨辉 2000') # 返回 False
 print('杨小辉'  not in  'IT 部杨辉 2000') # 返回 True
-```
+```[README.md](assets/README.md)
+
 
 除可以在字符串中使用 in 运算符外，后面章节中将要学习的列表、集合、字典等对象也可以使用 in 运算符来做判断测试。
 
