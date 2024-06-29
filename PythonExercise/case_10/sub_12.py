@@ -1,7 +1,6 @@
 '''
 题目：判断101-200之间有多少个素数，并输出所有素数。
 '''
-
 from math import sqrt
 
 min = 101
@@ -12,7 +11,8 @@ prime = list()
 for i in range(min, max + 1):
     temp = int(sqrt(i))
     flag = True  # 是否为素数
-    for j in range(2, temp + 1):
+    for j in range(2, temp + 1): # 这个地方是为了计算的更快
+    #for j in range(2,i):
         if (i % j) == 0:
             flag = False
             break
