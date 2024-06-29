@@ -1,8 +1,6 @@
 '''
 题目：利用递归方法求5!。
 '''
-
-
 def factor(n):
     if not isinstance(n, (int)):
         raise TypeError()
