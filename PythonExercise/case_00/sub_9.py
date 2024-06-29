@@ -10,7 +10,6 @@ user = {
     'woider': '3243',
 }
 
-
 def login():
     global name
     name = input('Username:')

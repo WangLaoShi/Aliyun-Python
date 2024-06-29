@@ -4,8 +4,9 @@
 
 origin = ['javascript', 'php', 'python']
 refer = origin
-copy = origin[:]  # origin.copy()
-
+copy = origin[:]
+copy2 = origin.copy()
+copy3 = [i for i in origin]
 print('变量(0x%x): %s' % (id(origin), str(origin)))
 print('引用(0x%x): %s' % (id(refer), str(refer)))
 print('复制(0x%x): %s' % (id(copy), str(copy)))

@@ -13,3 +13,15 @@ for i in range(dep - 2):
     arr.append(num)
 
 print(arr)
+
+
+# 递归实现
+
+def fib(n):
+    if n == 0:
+        return 0
+    if n == 1:
+        return 1
+    return fib(n - 1) + fib(n - 2)
+
+print(fib(20))
