@@ -13,3 +13,7 @@
 [DataCamp Python Cheat Sheet for Beginners](DataCamp-CheetSheets/Python_Cheat_Sheet_for_Beginners.pdf)
 
 [quickref](https://quickref.me/python)
+
+## 3. 很温柔的介绍 Python
+
+[油管](https://www.youtube.com/watch?v=pFGsLsoWcsY)

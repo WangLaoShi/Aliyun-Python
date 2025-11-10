@@ -22,7 +22,7 @@ streamlit hello
 
 ![streamlit_local](assets/streamlit_local.png)
 
-<img src="http://oss.images.shujudaka.com/uPic/217936487-1017784e-68ec-4e0d-a7f6-6b97525ddf88.gif">
+<img src="https://upiclw.oss-cn-beijing.aliyuncs.com/uPic/217936487-1017784e-68ec-4e0d-a7f6-6b97525ddf88.gif">
 
 ## 快速启动
 

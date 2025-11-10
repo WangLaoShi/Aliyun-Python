@@ -9,3 +9,7 @@ Python 项目中使用的 Excel 文件的分享地址
 
 「Python操作Excel-ExcelFiles」https://www.aliyundrive.com/s/dUdYuWzu7eP 提取码: ie69
 点击链接保存。
+
+# 如何创建和使用虚拟环境
+
+https://gitee.com/lincoln/pyenv
