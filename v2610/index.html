@@ -1,0 +1,1010 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Python 一篇概全 · v2610</title>
+<style>
+:root{color-scheme:light;--ink:#20332f;--muted:#61736d;--line:#dbe5df;--paper:#fffef9;--green:#226b51}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:25px}body{margin:0;background:#f1f5ef;color:var(--ink);font:16px/1.85 system-ui,-apple-system,"PingFang SC",sans-serif}
+aside{position:fixed;inset:0 auto 0 0;width:275px;padding:30px 22px;overflow:auto;border-right:1px solid var(--line);background:#f5f8f2}aside strong{display:block;font-size:21px}aside small{color:var(--muted)}aside ul{padding:0;list-style:none}aside li{margin:8px 0}a{color:var(--green);text-decoration:none}aside a{display:block;font-size:14px;padding:5px 8px;border-radius:6px}aside a:hover{background:#e2ecdf}
+main{margin-left:275px;padding:40px 6vw 90px;max-width:1330px;background:var(--paper);min-height:100vh}h1{font-size:38px;line-height:1.35;letter-spacing:-1px}h2{margin-top:65px;padding-top:22px;border-top:1px solid var(--line);font-size:27px;line-height:1.5}h3{font-size:19px;margin-top:30px}p,li{max-width:90ch}blockquote{margin:20px 0;padding:12px 22px;background:#edf4e9;border-left:4px solid #86a878;color:var(--muted)}blockquote p{margin:7px 0}pre{background:#152c29;color:#edf8f0;padding:23px;border-radius:10px;overflow:auto;font-size:14px;line-height:1.7}code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace}p code,li code,td code{background:#eaf0e6;padding:2px 5px;border-radius:4px}table{display:block;overflow:auto;border-collapse:collapse;width:100%;font-size:14px}td,th{border:1px solid var(--line);padding:11px 14px;text-align:left;min-width:110px}th{background:#edf3e9}.notice{font-size:14px;color:var(--muted);border:1px solid var(--line);padding:12px 16px;border-radius:8px}.top{font-size:12px;letter-spacing:2px;color:var(--green)}
+@media(max-width:850px){aside{position:relative;width:auto;max-height:320px;border-bottom:1px solid var(--line)}main{margin:0;padding:25px 20px}h1{font-size:30px}h2{font-size:23px}}
+@media print{aside,.notice{display:none}main{margin:0;padding:0;max-width:none}pre{white-space:pre-wrap;color:#111;background:#f2f2f2}h2{break-before:page}body{background:white;font-size:11pt}}
+</style><link rel="stylesheet" href="tutorial.css"></head><body><aside><strong>Python 一篇概全</strong><small>第一章 · 交互教程 / v2610</small><p><a href="#usage-guide">开始之前 · 使用说明</a></p><div class="toc">
+<ul>
+<li><a href="#01">01 · 先看全貌：程序是什么</a></li>
+<li><a href="#02">02 · 数据、变量与类型</a></li>
+<li><a href="#03">03 · 表达式、运算与字符串</a></li>
+<li><a href="#04">04 · 容器：从一个值到一组记录</a></li>
+<li><a href="#05">05 · 条件：把规则变成分支</a></li>
+<li><a href="#06">06 · 循环：批量处理与重复执行</a></li>
+<li><a href="#07">07 · 函数：把步骤变成可复用的任务</a></li>
+<li><a href="#08">08 · 对象与类：看懂点号后面的含义</a></li>
+<li><a href="#09">09 · 模块、包与运行环境</a></li>
+<li><a href="#10">10 · 文件、路径与数据格式</a></li>
+<li><a href="#11">11 · 错误、异常与调试</a></li>
+<li><a href="#12">12 · 验证：能运行不等于做对了</a></li>
+<li><a href="#13">13 · 表格与图表：基础能力的应用入口</a></li>
+<li><a href="#14-api-ai">14 · API 与 AI：连接外部能力</a></li>
+<li><a href="#15-ai">15 · 与 AI 协作：从想法到可靠代码</a></li>
+<li><a href="#16">16 · 串起来：一个完整、可验证的小程序</a></li>
+<li><a href="#17">17 · 基础地图与课后索引</a></li>
+</ul>
+</div>
+</aside>
+<main><div class="top">READ · UNDERSTAND · MODIFY · VERIFY</div><p class="notice">先读代码，再修改、运行或向右侧 AI 提问。示例独立运行，部分片段需自行补上前文变量。</p><section id="usage-guide" class="usage-guide">
+<h2>开始之前 · 如何使用这个教程</h2>
+<p>左侧选章节，中间读代码、修改和运行，右侧向 AI 提问。阅读和本机运行不需要 API Key，AI 讲解需要百炼 API Key。</p>
+<ol>
+<li><strong>启动程序：</strong>首次使用在终端执行下面的命令。以后使用只需进入该目录并运行 <code>python3 server.py</code>。运行期间保持终端打开；按 Ctrl+C 会停止服务。</li>
+</ol>
+<pre><code class="language-bash">cd /Users/luosen/Documents/GitHub/Aliyun-Python/v2610
+python3 -m pip install -r requirements.txt
+python3 server.py</code></pre>
+<ol start="2">
+<li><strong>用正确地址打开：</strong>访问 <a href="http://127.0.0.1:8765/">http://127.0.0.1:8765/</a>。若页面右侧显示“本地服务已连接”，即可使用。直接双击 <code>index.html</code> 只能阅读。</li>
+<li><strong>配置 AI：</strong>在右侧“调用配置”填写百炼 API Key。KEY 只保留在当前页面，刷新后需重新填写；教师若配置了服务环境变量，则可留空。调用会把当前代码和问题发送至百炼，并产生账号对应的调用费用。</li>
+<li><strong>阅读与提问：</strong>点击示例上方“让 AI 解释”，再点击右侧“发送问题”。可以修改问题，或使用“走读代码”“检查边界”“给我练习”。同一段代码可以连续追问；切换代码会开始新对话。</li>
+<li><strong>修改与运行：</strong>代码框可以直接编辑，点击“本机运行”查看结果。“还原”恢复原始示例。如果有 <code>input()</code>，先展开“标准输入”填写内容，每行一个。每段代码独立运行，前文定义的变量不会自动保留。</li>
+</ol>
+<details><summary>遇到问题怎么办？</summary>
+<table><thead><tr><th>现象</th><th>原因与处理</th></tr></thead><tbody>
+<tr><td>“请从本地教学服务重新打开页面”</td><td>页面的连接凭证已失效，通常是服务重启后旧页面仍打开。新版会自动重新连接；旧版请刷新页面，KEY 需重新填写。这不是百炼 API Key 错误。</td></tr>
+<tr><td>服务未连接 / 无法访问</td><td>确认终端中的 <code>server.py</code> 仍在运行，且页面端口与终端显示一致。若服务停止，请重新启动，再点击右侧“重新连接”。</td></tr>
+<tr><td>百炼返回 401、403 或模型权限错误</td><td>检查百炼 KEY、服务地域、账号权限和额度。这里是远程平台错误，与本地连接凭证不同。</td></tr>
+<tr><td>NameError / 缺少变量</td><td>有些代码是承接前文的片段，请把需要的变量定义一并补入当前代码框。</td></tr>
+<tr><td>ModuleNotFoundError</td><td>把依赖安装到启动服务所用的同一个 Python 环境。</td></tr>
+<tr><td>超过 8 秒停止</td><td>检查是否有无限循环，输入是否提前填写；图形窗口和长期交互任务请在编辑器中运行。</td></tr>
+</tbody></table></details>
+<p class="run-note">运行发生在本机，具有当前用户权限，仅运行信任的练习。相对路径文件放在临时目录，每次运行后清理；本工具只供本机使用。</p>
+</section>
+<h1 id="python">第一章 · Python 一篇概全</h1>
+<blockquote>
+<p>从一份学生成绩，到一份可以验证的报告。</p>
+<p>本章目标：建立 Python 编程的完整基础地图，能阅读、解释、修改和验证小程序。</p>
+<p>阅读约定：<strong>主线</strong>适合课堂快速串讲；<strong>补充</strong>保留必要细节，课上可以略过；<strong>动手</strong>用于检查是否理解。示例以 Python 3 为准。标有“故意错误”的代码用于观察错误，其余代码块需注意是否承接前文变量。</p>
+</blockquote>
+<h2 id="01">01 · 先看全貌：程序是什么</h2>
+<h3 id="_1">主线：输入 → 处理 → 输出</h3>
+<p>程序是一组明确的指令。Python 解释器执行这些指令，把输入转换为输出。输入可以来自键盘、文件、网络，也可以直接写在代码里。</p>
+<p>先读一段完整程序，不要求立刻记住每个符号：</p>
+<pre><code class="language-python">students = [
+    {&quot;name&quot;: &quot;小林&quot;, &quot;score&quot;: 85},
+    {&quot;name&quot;: &quot;小陈&quot;, &quot;score&quot;: 58},
+    {&quot;name&quot;: &quot;小周&quot;, &quot;score&quot;: 92},
+]
+
+
+def get_level(score):
+    if score &gt;= 90:
+        return &quot;优秀&quot;
+    elif score &gt;= 60:
+        return &quot;及格&quot;
+    else:
+        return &quot;待提高&quot;
+
+
+for student in students:
+    level = get_level(student[&quot;score&quot;])
+    print(f'{student[&quot;name&quot;]}：{student[&quot;score&quot;]} 分，{level}')
+</code></pre>
+<p>输出：</p>
+<pre><code class="language-text">小林：85 分，及格
+小陈：58 分，待提高
+小周：92 分，优秀
+</code></pre>
+<p>这段程序已经包含许多程序共有的结构：<strong>用数据描述对象，用条件表达规则，用循环批量执行，用函数封装任务。</strong></p>
+<h3 id="_2">补充：代码怎样运行</h3>
+<ul>
+<li><code>.py</code> 是常见的 Python 源文件后缀。在终端执行 <code>python lesson.py</code> 可以运行文件；部分电脑命令是 <code>python3</code>。</li>
+<li>解释器可以交互执行单条语句；Notebook 则把代码分成单元运行。Notebook 的运行顺序会影响变量状态，必要时重启后从头运行。</li>
+<li>编辑器负责编辑，解释器负责执行。编辑器装好了，不代表解释器和依赖已经配置好。</li>
+<li>顶层语句通常从上到下执行；条件决定分支，循环重复执行，函数体通常要等调用才执行。</li>
+<li><code>#</code> 后是单行注释，不参与执行。三引号表示多行字符串，放在模块、类或函数开头时可作说明文档，并非专门的多行注释语法。</li>
+<li>Python 用缩进表示代码块，通常每层使用 4 个空格，不混用 Tab 与空格。英文冒号 <code>:</code> 常表示代码块即将开始。</li>
+<li><code>()</code> 常用于调用和分组，<code>[]</code> 常用于列表和索引，<code>{}</code> 常用于字典和集合；含义需要结合上下文判断。</li>
+</ul>
+<h3 id="_3">动手</h3>
+<p>先预测再运行：把小陈的分数改为 <code>60</code>，输出会怎样变化？如果删掉最后三行，会发生什么？</p>
+<p><strong>问 AI：</strong>“请把这段程序分成数据、规则、执行三个部分说明，不要新增代码。最后问我一道检查理解的问题。”</p>
+<h2 id="02">02 · 数据、变量与类型</h2>
+<h3 id="_4">主线：变量是名字，值有类型</h3>
+<pre><code class="language-python">name = &quot;小林&quot;          # str：字符串
+score = 85             # int：整数
+average = 78.5         # float：浮点数
+passed = True          # bool：布尔值，True 或 False
+comment = None         # None：当前没有值
+
+print(name, score)
+print(type(score))     # &lt;class 'int'&gt;
+score = score + 5
+print(score)           # 90
+</code></pre>
+<p><code>=</code> 是赋值：先计算右侧，再把左侧名字绑定到结果。<code>==</code> 才是判断两个值是否相等。</p>
+<pre><code class="language-python">text_score = &quot;85&quot;
+score = int(text_score)
+print(score + 5)        # 90
+print(str(score) + &quot;分&quot;) # 85分
+</code></pre>
+<p><code>input()</code> 的返回值是字符串，即使输入看起来是数字：</p>
+<pre><code class="language-python"># 需要键盘输入，适合在终端单独运行
+text = input(&quot;请输入分数：&quot;)
+score = float(text)
+print(score)
+</code></pre>
+<h3 id="_5">补充：必须认识的细节</h3>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>用途</th>
+<th>示例</th>
+<th>常见误区</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>int</code></td>
+<td>个数、整数计算</td>
+<td><code>42</code>、<code>-3</code></td>
+<td><code>/</code> 的结果通常不是整数</td>
+</tr>
+<tr>
+<td><code>float</code></td>
+<td>小数计算</td>
+<td><code>3.14</code></td>
+<td>二进制浮点不能精确表示所有十进制小数</td>
+</tr>
+<tr>
+<td><code>str</code></td>
+<td>文本</td>
+<td><code>"85"</code>、<code>'小林'</code></td>
+<td>数字字符串不等于数字</td>
+</tr>
+<tr>
+<td><code>bool</code></td>
+<td>真或假</td>
+<td><code>True</code>、<code>False</code></td>
+<td>大小写必须正确</td>
+</tr>
+<tr>
+<td><code>NoneType</code></td>
+<td>缺失、尚无结果</td>
+<td><code>None</code></td>
+<td>不等于 <code>0</code> 或空字符串</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>变量名区分大小写；通常用 <code>student_name</code>，不能以数字开头，也不要覆盖 <code>list</code>、<code>str</code>、<code>sum</code> 等内置名字。</li>
+<li>Python 的变量不要求提前声明固定类型；同一个名字可以重新绑定其他类型，但随意改变含义会降低可读性。</li>
+<li><code>int("85")</code> 可以，<code>int("85.5")</code> 会报错；<code>int(85.9)</code> 截去小数部分，不是四舍五入。</li>
+<li><code>bool("")</code> 是 <code>False</code>，<code>bool("False")</code> 是 <code>True</code>，因为后者是非空字符串。</li>
+<li><code>None</code> 常用 <code>value is None</code> 判断。</li>
+<li><code>0.1 + 0.2 == 0.3</code> 通常为 <code>False</code>；近似比较可用 <code>math.isclose()</code>。涉及精确金额时应进一步学习 <code>decimal.Decimal</code>。</li>
+</ul>
+<h3 id="_6">动手</h3>
+<p>解释 <code>85</code>、<code>"85"</code>、<code>85.0</code> 的区别。为什么 <code>input()</code> 的结果不能直接与数字相加？</p>
+<h2 id="03">03 · 表达式、运算与字符串</h2>
+<h3 id="_7">主线：表达式会产生一个值</h3>
+<pre><code class="language-python">chinese = 85
+math = 92
+average = (chinese + math) / 2
+passed = chinese &gt;= 60 and math &gt;= 60
+
+print(f&quot;平均分：{average:.1f}，全部及格：{passed}&quot;)
+</code></pre>
+<p>f-string 在字符串前加 <code>f</code>，在 <code>{}</code> 中放表达式；<code>:.1f</code> 表示显示一位小数。</p>
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>常用符号</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>算术</td>
+<td><code>+ - * /</code></td>
+<td>加、减、乘、除</td>
+</tr>
+<tr>
+<td>算术</td>
+<td><code>// % **</code></td>
+<td>向下取整除法、余数、幂</td>
+</tr>
+<tr>
+<td>比较</td>
+<td><code>== != &gt; &gt;= &lt; &lt;=</code></td>
+<td>比较，通常得到布尔值</td>
+</tr>
+<tr>
+<td>逻辑</td>
+<td><code>and or not</code></td>
+<td>与、或、非</td>
+</tr>
+<tr>
+<td>成员</td>
+<td><code>in</code>、<code>not in</code></td>
+<td>是否属于一个容器</td>
+</tr>
+<tr>
+<td>身份</td>
+<td><code>is</code>、<code>is not</code></td>
+<td>是否为同一个对象</td>
+</tr>
+<tr>
+<td>更新</td>
+<td><code>+=</code>、<code>-=</code></td>
+<td>常见的累计或更新写法</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_8">补充：字符串是有顺序的文本</h3>
+<pre><code class="language-python">text = &quot;  Python,AI  &quot;
+clean = text.strip()
+print(clean.lower())             # python,ai
+print(clean.upper())             # PYTHON,AI
+print(clean.split(&quot;,&quot;))           # ['Python', 'AI']
+print(&quot; / &quot;.join([&quot;Python&quot;, &quot;AI&quot;])) # Python / AI
+print(clean.replace(&quot;AI&quot;, &quot;编程&quot;)) # Python,编程
+print(clean[0])                  # P，索引从 0 开始
+print(clean[-1])                 # I，-1 是最后一个
+print(clean[0:6])                # Python，包含起点，不包含终点
+print(&quot;Python&quot; in clean)         # True
+print(len(clean))                # 9
+</code></pre>
+<ul>
+<li>字符串不可变；<code>strip()</code>、<code>replace()</code> 等返回新字符串，要保留结果需要赋值。</li>
+<li>切片格式为 <code>[起点:终点:步长]</code>，可省略部分参数。索引越界会报错，切片通常会截取到有效边界。</li>
+<li><code>\n</code> 表示换行，<code>\t</code> 表示制表符；原始字符串如 <code>r"a\nb"</code> 通常保留反斜杠。</li>
+<li>比较值相等用 <code>==</code>，不要用 <code>is</code> 比较分数或字符串内容。</li>
+<li><code>and</code> 和 <code>or</code> 会短路，且可能返回操作数本身；入门时先用它们组合明确的判断条件。</li>
+<li>空字符串、空容器、零、<code>None</code> 在条件中通常视为假。字符串 <code>"0"</code> 为真。</li>
+<li>运算优先级不确定时加括号；<code>-3 // 2</code> 是 <code>-2</code>，因为向负无穷方向取整。</li>
+</ul>
+<h3 id="_9">动手</h3>
+<p>把 <code>" 85分 "</code> 转为数字 <code>85</code>。再思考：遇到 <code>"缺考"</code>，还能使用相同步骤吗？</p>
+<h2 id="04">04 · 容器：从一个值到一组记录</h2>
+<h3 id="_10">主线：列表存一组，字典描述一条</h3>
+<pre><code class="language-python">scores = [85, 58, 92]
+print(scores[0])                # 85
+scores.append(76)
+print(len(scores))             # 4
+
+student = {&quot;name&quot;: &quot;小林&quot;, &quot;score&quot;: 85}
+print(student[&quot;name&quot;])
+student[&quot;score&quot;] = 90
+student[&quot;class&quot;] = &quot;一班&quot;
+
+students = [
+    {&quot;name&quot;: &quot;小林&quot;, &quot;score&quot;: 85},
+    {&quot;name&quot;: &quot;小陈&quot;, &quot;score&quot;: 58},
+]
+print(students[1][&quot;score&quot;])     # 58
+</code></pre>
+<p><code>students[1]["score"]</code> 表示：先取列表中的第二条记录，再取这条记录的分数。</p>
+<h3 id="_11">补充：四种常见容器</h3>
+<table>
+<thead>
+<tr>
+<th>容器</th>
+<th>示例</th>
+<th>顺序与修改</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>列表 <code>list</code></td>
+<td><code>[85, 58]</code></td>
+<td>有序，可修改，允许重复</td>
+<td>多条记录、可变序列</td>
+</tr>
+<tr>
+<td>元组 <code>tuple</code></td>
+<td><code>(120, 30)</code></td>
+<td>有序，元素引用不可重新赋值</td>
+<td>坐标、固定组合</td>
+</tr>
+<tr>
+<td>字典 <code>dict</code></td>
+<td><code>{"name": "小林"}</code></td>
+<td>保留插入顺序，键唯一，可修改</td>
+<td>属性、查找、映射</td>
+</tr>
+<tr>
+<td>集合 <code>set</code></td>
+<td><code>{"一班", "二班"}</code></td>
+<td>不承诺索引顺序，元素唯一</td>
+<td>去重、交集、成员判断</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-python">scores = [85, 58, 92]
+scores[1] = 60
+scores.extend([70, 80])
+last = scores.pop()             # 移除并返回最后一个
+ordered = sorted(scores)       # 返回新的排序列表
+scores.sort()                  # 原地排序，返回 None
+
+student = {&quot;name&quot;: &quot;小林&quot;, &quot;score&quot;: 85}
+print(student.get(&quot;comment&quot;, &quot;暂无评语&quot;))
+print(list(student.keys()))
+print(list(student.values()))
+print(list(student.items()))
+
+classes = [&quot;一班&quot;, &quot;一班&quot;, &quot;二班&quot;]
+unique_classes = set(classes)
+print(len(unique_classes))      # 2
+print({&quot;一班&quot;, &quot;二班&quot;} &amp; {&quot;二班&quot;, &quot;三班&quot;}) # {'二班'}
+</code></pre>
+<ul>
+<li><code>[]</code> 是空列表，<code>{}</code> 是空字典，<code>set()</code> 才是空集合，<code>(1,)</code> 是单元素元组。</li>
+<li>字典缺失键使用 <code>student["missing"]</code> 会报 <code>KeyError</code>；<code>.get()</code> 可设置默认值，但不应借默认值掩盖必须存在的字段。</li>
+<li>字典的键和集合的元素需要可哈希；字符串、整数常用，列表和字典不能直接使用。</li>
+<li><code>del student["score"]</code> 可删除键，<code>scores.remove(60)</code> 按值删除首个匹配元素；目标不存在会报错。</li>
+<li>元组不可变不代表内部对象都不可变，例如元组中包含的列表仍可被修改。</li>
+</ul>
+<h3 id="_12">补充：赋值不等于复制</h3>
+<pre><code class="language-python">a = [85, 58]
+b = a
+b.append(92)
+print(a)                       # [85, 58, 92]，二者指向同一个列表
+
+c = a.copy()
+c.append(100)
+print(a)                       # [85, 58, 92]
+</code></pre>
+<p><code>copy()</code> 是浅复制；嵌套容器的内部对象仍可能共享，需要完全独立时再学习 <code>copy.deepcopy()</code>。理解可变对象，有助于排查“明明只改了另一份数据”的错误。</p>
+<h3 id="_13">动手</h3>
+<p>为每个学生增加班级信息。尝试解释“列表中的字典”和“字典中的列表”分别适合表示什么。</p>
+<h2 id="05">05 · 条件：把规则变成分支</h2>
+<h3 id="_14">主线：条件顺序就是规则的一部分</h3>
+<pre><code class="language-python">score = 85
+
+if not 0 &lt;= score &lt;= 100:
+    print(&quot;分数无效&quot;)
+elif score &gt;= 90:
+    print(&quot;优秀&quot;)
+elif score &gt;= 60:
+    print(&quot;及格&quot;)
+else:
+    print(&quot;待提高&quot;)
+</code></pre>
+<p>在一组 <code>if / elif / else</code> 中，只执行第一个条件为真的分支。如果先判断 <code>score &gt;= 60</code>，90 分也会先落入“及格”。</p>
+<h3 id="_15">补充：独立判断与互斥判断</h3>
+<ul>
+<li>多个独立的 <code>if</code> 可能执行多次；一组 <code>if / elif / else</code> 最多执行一个分支。</li>
+<li><code>if score:</code> 判断的是分数的真假，不等于判断是否及格，也不能区分零分和缺失。</li>
+<li><code>label = "及格" if score &gt;= 60 else "待提高"</code> 是条件表达式，适用于简短选择。</li>
+<li>嵌套条件可以表达复杂规则，但层数过多时应考虑拆成函数。</li>
+<li><code>pass</code> 是空操作占位符，不代表退出或跳过循环。</li>
+<li>判断条件要考虑边界：<code>&gt;= 60</code> 与 <code>&gt; 60</code> 的含义不同。</li>
+</ul>
+<h3 id="_16">动手</h3>
+<p>为上述程序列出预期：<code>-1</code>、<code>0</code>、<code>59</code>、<code>60</code>、<code>89</code>、<code>90</code>、<code>100</code>、<code>101</code>。先写预期，再运行核对。</p>
+<h2 id="06">06 · 循环：批量处理与重复执行</h2>
+<h3 id="_17">主线：遍历、判断、累计</h3>
+<pre><code class="language-python">scores = [85, 58, 92, 60]
+passed_count = 0
+
+for score in scores:
+    if score &gt;= 60:
+        passed_count += 1
+
+print(f&quot;及格人数：{passed_count}&quot;) # 3
+</code></pre>
+<p><code>for</code> 适合遍历已有数据；<code>while</code> 适合在条件仍满足时持续执行。</p>
+<pre><code class="language-python">remaining = 3
+while remaining &gt; 0:
+    print(f&quot;剩余尝试次数：{remaining}&quot;)
+    remaining -= 1
+</code></pre>
+<h3 id="_18">补充：常用循环工具</h3>
+<pre><code class="language-python">scores = [85, 58, 92]
+
+for index, score in enumerate(scores, start=1):
+    print(index, score)
+
+for number in range(3):         # 依次为 0、1、2
+    print(number)
+
+names = [&quot;小林&quot;, &quot;小陈&quot;, &quot;小周&quot;]
+for name, score in zip(names, scores):
+    print(name, score)
+
+for score in scores:
+    if score &lt; 0:
+        continue               # 跳过本次循环剩余部分
+    if score == 100:
+        break                  # 结束当前这一层循环
+    print(score)
+</code></pre>
+<ul>
+<li><code>range(start, stop, step)</code> 不包含 <code>stop</code>；步长不能为零。</li>
+<li><code>zip()</code> 默认以最短输入为准，长度不一致可能丢掉尾部记录。</li>
+<li><code>while</code> 必须有明确的停止机制；缺少更新条件可能形成无限循环。</li>
+<li>遍历列表时直接删除其中元素可能漏处理记录，通常应构造新列表。</li>
+<li>嵌套循环会增加处理次数，要警惕数据量增加后运行变慢。</li>
+</ul>
+<h3 id="_19">补充：推导式与内置聚合</h3>
+<pre><code class="language-python">scores = [85, 58, 92, 60]
+passed_scores = [score for score in scores if score &gt;= 60]
+print(passed_scores)           # [85, 92, 60]
+print(sum(scores))             # 295
+print(min(scores), max(scores)) # 58 92
+print(any(score &lt; 60 for score in scores))  # True，至少一个
+print(all(score &gt;= 60 for score in scores)) # False，全部满足才为真
+</code></pre>
+<p>简单推导式可以压缩“遍历并生成结果”的代码。复杂逻辑先写普通循环。空列表不能直接用 <code>sum(scores) / len(scores)</code> 求均值；<code>min([])</code> 和 <code>max([])</code> 也会报错。</p>
+<h3 id="_20">动手</h3>
+<p>输出所有不及格的学生姓名；再输出“第几条记录、姓名、分数”。解释为何零条记录时不能计算及格率。</p>
+<h2 id="07">07 · 函数：把步骤变成可复用的任务</h2>
+<h3 id="_21">主线：输入、处理、返回</h3>
+<pre><code class="language-python">def get_level(score, pass_score=60):
+    &quot;&quot;&quot;根据分数返回等级。&quot;&quot;&quot;
+    if score &gt;= 90:
+        return &quot;优秀&quot;
+    if score &gt;= pass_score:
+        return &quot;及格&quot;
+    return &quot;待提高&quot;
+
+
+level = get_level(85)
+print(level)                    # 及格
+print(get_level(70, pass_score=75)) # 待提高
+</code></pre>
+<p>函数定义不会立即执行函数体；调用时才执行。<code>return</code> 返回结果并结束本次调用。函数应当有清楚的职责和输入约定，例如上例默认传入合法分数，并约定及格线不高于优秀线。</p>
+<h3 id="_22">补充：参数与返回值</h3>
+<pre><code class="language-python">def summarize(scores):
+    if not scores:
+        return {&quot;count&quot;: 0, &quot;average&quot;: None}
+    return {&quot;count&quot;: len(scores), &quot;average&quot;: sum(scores) / len(scores)}
+
+
+result = summarize([85, 58, 92])
+print(result[&quot;count&quot;])
+print(result[&quot;average&quot;])
+</code></pre>
+<ul>
+<li>参数是定义中的名字，实参是调用时传入的值。可按位置或关键字传参，默认参数可省略。</li>
+<li><code>print()</code> 把内容显示出来；<code>return</code> 把值交给调用者。只有打印没有返回值的函数，调用结果是 <code>None</code>。</li>
+<li><code>return count, average</code> 实际上返回一个元组，调用者可用 <code>count, average = ...</code> 解包。</li>
+<li>函数内部赋值的名字通常是局部变量。优先通过参数传入数据、通过返回值交付结果，减少对全局变量的依赖。</li>
+<li>函数可以修改传入的列表或字典，是否允许修改需要明确约定。</li>
+<li><code>*args</code> 可接收额外的位置参数，<code>**kwargs</code> 可接收额外的关键字参数，第一遍能识别即可。</li>
+<li><code>lambda x: x["score"]</code> 是一个简短匿名函数，例如 <code>sorted(students, key=lambda x: x["score"])</code>。</li>
+</ul>
+<h3 id="_23">补充：两个重要习惯</h3>
+<p>避免把可变对象作为默认参数：</p>
+<pre><code class="language-python">def add_score(score, scores=None):
+    if scores is None:
+        scores = []
+    scores.append(score)
+    return scores
+</code></pre>
+<p>写成 <code>scores=[]</code> 时，默认列表会在多次调用间共享，可能产生意外结果。</p>
+<p>类型提示表达约定，通常不会自动检查运行时输入：</p>
+<pre><code class="language-python">def is_passed(score: float) -&gt; bool:
+    return score &gt;= 60
+</code></pre>
+<h3 id="_24">动手</h3>
+<p>写或让 AI 协助写一个 <code>calculate_pass_rate(scores)</code>。先约定：返回 0～1 的小数还是百分数？空列表返回什么？随后才实现代码。</p>
+<h2 id="08">08 · 对象与类：看懂点号后面的含义</h2>
+<h3 id="_25">主线：先会使用对象</h3>
+<p>在 Python 中，数字、字符串、列表、函数等都是对象。对象有类型，有些对象具有属性和方法。</p>
+<pre><code class="language-python">name = &quot; 小林 &quot;
+print(name.strip())             # 调用字符串对象的方法
+
+scores = [85, 58]
+scores.append(92)               # 调用列表对象的方法
+</code></pre>
+<p><code>对象.属性</code> 通常读取信息；<code>对象.方法(...)</code> 调用对象提供的操作。具体名称由类型决定。</p>
+<h3 id="_26">补充：类描述一类对象</h3>
+<pre><code class="language-python">class Student:
+    def __init__(self, name, score):
+        self.name = name
+        self.score = score
+
+    def is_passed(self):
+        return self.score &gt;= 60
+
+
+student = Student(&quot;小林&quot;, 85)
+print(student.name)             # 属性
+print(student.is_passed())      # 方法，True
+</code></pre>
+<ul>
+<li>类是创建某类对象的定义；实例是根据类创建的具体对象。</li>
+<li><code>__init__</code> 在实例初始化时执行；<code>self</code> 按惯例表示当前实例。</li>
+<li>字典也能表达学生记录；需要把状态和行为统一管理时，可以考虑定义类。小程序无需为了“面向对象”而强行建类。</li>
+<li>封装、继承和多态属于后续主题。本章保留认识：封装组织状态与操作，继承扩展已有类，多态允许不同对象响应相同操作。</li>
+<li><code>_name</code> 是内部使用的惯例；<code>__name</code> 涉及名称改写，不代表真正的安全隔离。</li>
+<li><code>@property</code>、<code>@classmethod</code>、<code>@staticmethod</code>、<code>__slots__</code> 能在参考资料中继续学习，不影响阅读本章主线程序。</li>
+</ul>
+<h3 id="_27">动手</h3>
+<p>比较 <code>student["name"]</code> 和 <code>student.name</code>：它们分别要求 <code>student</code> 是什么样的数据？</p>
+<h2 id="09">09 · 模块、包与运行环境</h2>
+<h3 id="_28">主线：复用已有能力</h3>
+<pre><code class="language-python">import statistics
+from pathlib import Path
+
+scores = [85, 58, 92]
+print(statistics.mean(scores))
+print(Path.cwd())               # 当前工作目录
+</code></pre>
+<ul>
+<li>模块通常对应一个 <code>.py</code> 文件；包组织多个模块；库是对一组可复用能力的通称。</li>
+<li>标准库随 Python 提供；第三方库通常需要额外安装。</li>
+<li><code>import</code> 导入已可用的模块，不负责安装。安装分发包的名字与导入名有时不同。</li>
+</ul>
+<h3 id="_29">补充：最小环境操作</h3>
+<p>以下是<strong>终端命令，不是 Python 语句</strong>。假设本机 Python 命令为 <code>python</code>：</p>
+<pre><code class="language-bash">python --version
+python -m venv .venv
+</code></pre>
+<p>macOS / Linux 激活：</p>
+<pre><code class="language-bash">source .venv/bin/activate
+</code></pre>
+<p>Windows PowerShell 激活：</p>
+<pre><code class="language-powershell">.venv\Scripts\Activate.ps1
+</code></pre>
+<p>激活后安装、检查和记录依赖：</p>
+<pre><code class="language-bash">python -m pip install pandas openpyxl
+python -m pip show pandas
+python -m pip freeze &gt; requirements.txt
+python -m pip install -r requirements.txt
+</code></pre>
+<ul>
+<li>虚拟环境隔离不同项目的依赖。编辑器选择的解释器应与安装依赖时使用的解释器一致。</li>
+<li><code>python -m pip</code> 有助于明确为哪个解释器安装；课程发放教师测试过的依赖清单，学生无需自行追逐最新版本。</li>
+<li><code>requirements.txt</code> 记录依赖版本不代表在所有系统上都必然复现，还需要记录 Python 版本等条件。</li>
+<li>不要把自己的文件命名为 <code>json.py</code>、<code>csv.py</code>、<code>statistics.py</code> 等，以免遮蔽要导入的模块。</li>
+<li>自己的函数可保存到 <code>helpers.py</code>，再用 <code>from helpers import get_level</code> 导入。</li>
+<li><code>if __name__ == "__main__":</code> 下的代码只在当前文件直接运行时执行，适合放程序入口，避免被导入时意外执行。</li>
+</ul>
+<h3 id="_30">动手</h3>
+<p>出现 <code>ModuleNotFoundError</code> 时，先检查什么？让 AI 帮助区分“未安装”“装在另一个环境”“文件命名冲突”。</p>
+<h2 id="10">10 · 文件、路径与数据格式</h2>
+<h3 id="_31">主线：把内存中的结果保存下来</h3>
+<pre><code class="language-python">from pathlib import Path
+
+folder = Path(&quot;output&quot;)
+folder.mkdir(parents=True, exist_ok=True)
+report_path = folder / &quot;report.txt&quot;
+
+report_path.write_text(&quot;小林：85 分，及格\n&quot;, encoding=&quot;utf-8&quot;)
+content = report_path.read_text(encoding=&quot;utf-8&quot;)
+print(content)
+</code></pre>
+<p>这段代码会在<strong>当前工作目录</strong>下创建 <code>output</code> 文件夹，并写入或覆盖 <code>report.txt</code>。</p>
+<h3 id="_32">补充：打开文件与关闭文件</h3>
+<pre><code class="language-python">with open(&quot;output/report.txt&quot;, &quot;r&quot;, encoding=&quot;utf-8&quot;) as file:
+    content = file.read()
+print(content)
+</code></pre>
+<p><code>with</code> 管理资源，离开代码块后自动关闭文件。常见模式：<code>r</code> 读取，<code>w</code> 写入并覆盖，<code>a</code> 追加，<code>rb</code> 读取二进制。</p>
+<p>相对路径相对于当前工作目录，不一定相对于代码文件。普通脚本可用 <code>Path(__file__).resolve().parent</code> 定位脚本目录，Notebook 通常没有 <code>__file__</code>。</p>
+<h3 id="csv-json">补充：CSV 与 JSON</h3>
+<p>CSV 适合二维表格；JSON 适合列表、字典等嵌套数据，也常见于 API。</p>
+<pre><code class="language-python">import csv
+from pathlib import Path
+
+Path(&quot;output&quot;).mkdir(exist_ok=True)
+students = [{&quot;name&quot;: &quot;小林&quot;, &quot;score&quot;: 85}, {&quot;name&quot;: &quot;小陈&quot;, &quot;score&quot;: 58}]
+
+with open(&quot;output/students.csv&quot;, &quot;w&quot;, encoding=&quot;utf-8-sig&quot;, newline=&quot;&quot;) as file:
+    writer = csv.DictWriter(file, fieldnames=[&quot;name&quot;, &quot;score&quot;])
+    writer.writeheader()
+    writer.writerows(students)
+
+with open(&quot;output/students.csv&quot;, encoding=&quot;utf-8-sig&quot;, newline=&quot;&quot;) as file:
+    records = list(csv.DictReader(file))
+
+print(records[0][&quot;score&quot;])       # '85'，CSV 读取后通常需要转换类型
+</code></pre>
+<pre><code class="language-python">import json
+
+student = {&quot;name&quot;: &quot;小林&quot;, &quot;score&quot;: 85, &quot;comment&quot;: None}
+text = json.dumps(student, ensure_ascii=False, indent=2)
+print(text)
+restored = json.loads(text)
+print(restored[&quot;name&quot;])
+</code></pre>
+<p>JSON 的对象键是字符串，<code>true / false / null</code> 对应 Python 的 <code>True / False / None</code>。<code>dumps / loads</code> 处理字符串，<code>dump / load</code> 面向文件对象。JSON 与 Python 字典的写法相似，但不是同一种语言格式。</p>
+<p>读取、覆盖、移动、删除文件之前，确认路径和作用范围；练习使用副本与专用输出目录，不覆盖原始数据。</p>
+<h3 id="_33">动手</h3>
+<p>把及格学生保存成新 CSV；再次读入，核对人数与分数类型。为什么不能把 CSV 内容直接按逗号拆分？考虑字段内部含逗号的情况。</p>
+<h2 id="11">11 · 错误、异常与调试</h2>
+<h3 id="_34">主线：报错是定位线索</h3>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>例子</th>
+<th>处理思路</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>语法错误</td>
+<td>少了冒号、括号不匹配</td>
+<td>先让代码符合语法</td>
+</tr>
+<tr>
+<td>运行异常</td>
+<td>除以零、文件不存在、类型不匹配</td>
+<td>检查输入、环境与调用</td>
+</tr>
+<tr>
+<td>逻辑错误</td>
+<td>60 分被判为不及格</td>
+<td>用明确的预期验证规则</td>
+</tr>
+</tbody>
+</table>
+<p>读 Traceback 时，先看最后的异常类型和消息，再找自己代码中的文件名、行号，查看有关变量的值和类型。</p>
+<pre><code class="language-python">raw = &quot;缺考&quot;
+
+try:
+    score = float(raw)
+except ValueError:
+    print(&quot;分数不是有效数字，请检查输入&quot;)
+else:
+    print(f&quot;转换成功：{score}&quot;)
+finally:
+    print(&quot;本次检查结束&quot;)
+</code></pre>
+<h3 id="_35">补充：主动拒绝错误输入</h3>
+<pre><code class="language-python">import math
+
+
+def parse_score(raw):
+    if isinstance(raw, bool):
+        raise ValueError(&quot;布尔值不能作为分数&quot;)
+    score = float(raw)
+    if not math.isfinite(score) or not 0 &lt;= score &lt;= 100:
+        raise ValueError(&quot;分数必须是 0～100 之间的有限数&quot;)
+    return score
+</code></pre>
+<ul>
+<li>常见异常：<code>NameError</code> 未定义名字，<code>TypeError</code> 类型不匹配，<code>ValueError</code> 值不合要求，<code>IndexError</code> 索引越界，<code>KeyError</code> 键不存在，<code>FileNotFoundError</code> 文件不存在。</li>
+<li><code>raise</code> 主动抛出异常；<code>except</code> 处理预期异常。不要用宽泛捕获后 <code>pass</code> 来隐藏问题。</li>
+<li><code>else</code> 在没有异常时执行；<code>finally</code> 通常用于无论成功失败都需执行的清理。</li>
+<li><code>float("nan")</code> 和 <code>float("inf")</code> 可以转换成功，但不适合作为正常分数，因此校验不应止于“能转为数字”。</li>
+<li>调试可以从打印 <code>repr(value)</code> 和 <code>type(value)</code> 开始，再逐步学习断点与调试器。</li>
+</ul>
+<h3 id="_36">动手</h3>
+<p>把 <code>""</code>、<code>"85"</code>、<code>"缺考"</code>、<code>"101"</code>、<code>"nan"</code> 分别传入 <code>parse_score()</code>，预测并核对结果。不要为了让程序继续运行，偷偷把缺考改成零分。</p>
+<h2 id="12">12 · 验证：能运行不等于做对了</h2>
+<h3 id="_37">主线：先写预期，再检验结果</h3>
+<pre><code class="language-python">def get_level(score):
+    if score &gt;= 90:
+        return &quot;优秀&quot;
+    if score &gt;= 60:
+        return &quot;及格&quot;
+    return &quot;待提高&quot;
+
+
+assert get_level(59) == &quot;待提高&quot;
+assert get_level(60) == &quot;及格&quot;
+assert get_level(90) == &quot;优秀&quot;
+print(&quot;检查通过&quot;)
+</code></pre>
+<p>测试不是证明程序永远正确，而是用有代表性的样例检查重要行为，降低修改后出错的可能。</p>
+<h3 id="_38">补充：一份最小验证清单</h3>
+<table>
+<thead>
+<tr>
+<th>检查方向</th>
+<th>成绩场景中的例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>正常情况</td>
+<td>三名学生，分数分别为 85、58、92</td>
+</tr>
+<tr>
+<td>边界情况</td>
+<td>0、60、90、100 分</td>
+</tr>
+<tr>
+<td>空数据</td>
+<td>零条记录，均值和及格率如何表达</td>
+</tr>
+<tr>
+<td>非法数据</td>
+<td>缺失、文字、负数、超过 100、无穷与非数</td>
+</tr>
+<tr>
+<td>口径</td>
+<td>缺考是否进入分母；一名学生多条成绩如何处理</td>
+</tr>
+<tr>
+<td>输出核对</td>
+<td>有效条数加无效条数是否等于总条数</td>
+</tr>
+<tr>
+<td>修改回归</td>
+<td>改及格线后，其他规则是否仍然成立</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>浮点近似比较可用 <code>math.isclose()</code>，不要总是依赖 <code>==</code>。</li>
+<li><code>assert</code> 适合教学检查与开发期断言；优化模式可能移除断言，正式输入校验应使用明确判断和异常。</li>
+<li>保存小型测试数据与人工预期，之后再接入完整数据。</li>
+<li>AI 可以提出测试，但也可能与实现一起误解需求。验收标准应由人先确认。</li>
+</ul>
+<h3 id="_39">动手</h3>
+<p>给“平均分”准备一份能手算的小样本，再向 AI 要一段故意写错的平均分程序，尝试用你的样例发现错误。</p>
+<h2 id="13">13 · 表格与图表：基础能力的应用入口</h2>
+<h3 id="_40">主线：用已有工具操作一整张表</h3>
+<p>以下为扩展示例，需要在当前环境安装 <code>pandas</code>。绘图另需 <code>matplotlib</code>，读写 <code>.xlsx</code> 常需 <code>openpyxl</code>。这些是终端安装任务，不应混入 Python 代码中。</p>
+<pre><code class="language-python">import pandas as pd
+
+students = [
+    {&quot;name&quot;: &quot;小林&quot;, &quot;class&quot;: &quot;一班&quot;, &quot;score&quot;: 85},
+    {&quot;name&quot;: &quot;小陈&quot;, &quot;class&quot;: &quot;一班&quot;, &quot;score&quot;: 58},
+    {&quot;name&quot;: &quot;小周&quot;, &quot;class&quot;: &quot;二班&quot;, &quot;score&quot;: 92},
+]
+df = pd.DataFrame(students)
+print(df.head())
+print(df[df[&quot;score&quot;] &gt;= 60])
+print(df.groupby(&quot;class&quot;)[&quot;score&quot;].mean())
+</code></pre>
+<h3 id="_41">补充：看懂常见调用</h3>
+<ul>
+<li><code>pd.read_csv(...)</code>、<code>pd.read_excel(...)</code>：读取表格。</li>
+<li><code>df["score"]</code>：选择一列；<code>df[条件]</code>：筛选行。</li>
+<li><code>pd.to_numeric(..., errors="coerce")</code>：转换数字，无法转换的变为缺失值，需要后续明确处理。</li>
+<li><code>dropna()</code>、<code>fillna()</code>、<code>drop_duplicates()</code>：处理缺失与重复，策略取决于业务含义。</li>
+<li><code>groupby()</code>：按类别分组；<code>sum()</code>、<code>mean()</code>、<code>count()</code>：计算汇总。</li>
+<li><code>to_csv(..., index=False)</code>：导出，通常不附带行索引。</li>
+<li>pandas 多条件筛选通常使用带括号的 <code>&amp;</code>、<code>|</code>，不能直接照搬标量条件中的 <code>and</code>、<code>or</code>。</li>
+</ul>
+<p>图表可以理解为“把数据传给绘图函数”：</p>
+<pre><code class="language-python">import matplotlib.pyplot as plt
+
+plt.bar([&quot;A&quot;, &quot;B&quot;, &quot;C&quot;], [85, 58, 92])
+plt.title(&quot;Student scores&quot;)
+plt.xlabel(&quot;Student&quot;)
+plt.ylabel(&quot;Score&quot;)
+plt.ylim(0, 100)
+plt.tight_layout()
+plt.show()
+</code></pre>
+<p>条形图适合类别比较，折线图适合有序时间趋势。图表应有标题、单位、周期或样本说明。中文字体配置和具体分析操作放到后续练习展开。</p>
+<h3 id="_42">动手</h3>
+<p>让 AI 解释 <code>df[df["score"] &gt;= 60]</code> 的两层方括号各自做了什么，再用基础列表和循环表达同一个任务。</p>
+<h2 id="14-api-ai">14 · API 与 AI：连接外部能力</h2>
+<h3 id="ai">主线：AI 调用仍然是输入、处理、输出</h3>
+<pre><code class="language-text">学生的问题 + 当前示例代码
+        ↓
+页面组织请求
+        ↓
+服务端调用百炼 Agent
+        ↓
+得到响应并提取解释文字
+        ↓
+页面显示，学生继续追问
+</code></pre>
+<p>API 是程序之间约定的交互接口。HTTP API 常由请求地址、请求方法、请求头和请求体构成；响应通常包含状态码及数据。</p>
+<h3 id="_43">补充：必须区分的几个概念</h3>
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>API Key</td>
+<td>调用凭据，类似钥匙，不是模型本身</td>
+</tr>
+<tr>
+<td>Agent / 应用标识</td>
+<td>决定调用哪个已配置的应用</td>
+</tr>
+<tr>
+<td>请求输入</td>
+<td>问题、代码、上下文等</td>
+</tr>
+<tr>
+<td>响应数据</td>
+<td>返回文字、标识、错误或其他结构</td>
+</tr>
+<tr>
+<td>会话</td>
+<td>多轮对话的上下文或会话标识，具体规则依平台接口</td>
+</tr>
+<tr>
+<td>超时与限流</td>
+<td>网络失败或服务限制，需要明确提示与处理</td>
+</tr>
+</tbody>
+</table>
+<p>下面是<strong>接口流程伪代码，不是可运行的百炼调用代码</strong>。具体接入需要确认应用类型、区域、接口及官方协议：</p>
+<pre><code class="language-text">读取调用配置
+检查问题与代码
+按平台协议构造请求
+设置认证与超时
+发送请求
+若失败：显示可理解的错误
+若成功：解析响应并展示
+</code></pre>
+<ul>
+<li>模型返回的解释可能出错；格式正确也不代表内容正确。</li>
+<li>数值统计与确定规则优先由代码执行，模型用于解释、归纳等任务，并配合核验。</li>
+<li>模型输出作为外部数据处理，不直接执行其中的代码或命令。</li>
+<li>教学页面可提供 KEY 输入，但共享页面中不应把教师长期密钥写死在前端或提交到仓库。正式部署需要设计服务端调用与访问控制。</li>
+<li>本地教学也需说明 KEY 的传输和保存方式；不要默认把 KEY 长期存在浏览器或日志中。</li>
+<li>成绩等数据使用虚构样例；调用外部服务时只发送完成任务所需的内容。</li>
+</ul>
+<h3 id="_44">动手</h3>
+<p>假设网络断开，页面应该显示什么？如果 AI 说“60 分不及格”，你准备用什么证据判断对错？</p>
+<h2 id="15-ai">15 · 与 AI 协作：从想法到可靠代码</h2>
+<h3 id="ai_1">主线：人负责目标与验收，AI 协助实现</h3>
+<p>推荐流程：</p>
+<pre><code class="language-text">描述问题 → 明确规则 → 给出样例 → 拆成步骤
+       → 生成或修改一小段 → 运行 → 核对 → 再扩展
+</code></pre>
+<p>向 AI 提问时说明：任务目标、输入结构、处理规则、输出格式、限制条件、验收样例。</p>
+<p>示例：</p>
+<blockquote>
+<p>我在学习 Python，输入是学生字典组成的列表，每条包含 name 和 score。请先帮我拆解处理步骤，不要直接写完整程序。有效分数是 0～100 的有限数字，60 分及格。缺失或非法记录单独列出，不按零分参与平均数。没有有效记录时平均分为 None。请先给出三个输入输出样例让我确认。</p>
+</blockquote>
+<h3 id="_45">补充：根据问题选择求助方式</h3>
+<ul>
+<li>读不懂：“解释这几个变量在每一步的值，用一个具体输入走一遍。”</li>
+<li>不会拆解：“先列函数职责、输入输出和依赖关系。”</li>
+<li>程序报错：“这是最小复现代码、完整报错、运行方式、预期和实际结果。”</li>
+<li>程序不报错但结果不对：“请检查这条规则，用边界样例找反例。”</li>
+<li>希望修改：“仅调整及格线规则，解释改动位置，重新核对已有样例。”</li>
+<li>希望练习：“出一道类似问题，先给提示，等我回答后再反馈。”</li>
+</ul>
+<p>AI 生成后，至少检查：能否解释关键代码；依赖是否确实存在；输入输出是否符合约定；是否读写了预期范围之外的文件；测试是否覆盖边界；凭据是否泄露。不能理解的代码，先缩小范围再运行。</p>
+<h3 id="_46">动手</h3>
+<p>请 AI 实现及格率函数。你负责提前给出两个正常样例和一个空输入样例，并记录一次“AI 的实现与我的规则不一致”的修正过程。</p>
+<h2 id="16">16 · 串起来：一个完整、可验证的小程序</h2>
+<h3 id="_47">主线：一份数据经过哪些步骤</h3>
+<p>下面程序只使用标准库，完整源码另存于 <code>examples/grade_report.py</code>。运行后在指定输出目录生成报告与无效记录文件，不覆盖原始数据。</p>
+<pre><code class="language-text">准备原始记录
+  → 校验并转换
+  → 分离有效与无效记录
+  → 计算汇总
+  → 检查结果
+  → 保存报告
+</code></pre>
+<p>关键口径：每条记录按一次成绩计数；姓名不能为空；布尔值不作为分数；分数必须为 0～100 的有限数；无效记录不进入均值和及格率分母；没有有效成绩时二者均为 <code>None</code>；及格率返回 0～1 的小数。</p>
+<pre><code class="language-python"># 节选：完整程序见配套源码
+
+def summarize(students):
+    scores = [student[&quot;score&quot;] for student in students]
+    count = len(scores)
+    passed = sum(score &gt;= 60 for score in scores)
+    return {
+        &quot;valid_count&quot;: count,
+        &quot;passed_count&quot;: passed,
+        &quot;average&quot;: sum(scores) / count if count else None,
+        &quot;pass_rate&quot;: passed / count if count else None,
+    }
+</code></pre>
+<p>为什么先校验再汇总？因为计算函数可以围绕明确的有效数据工作，输入问题也能单独保留下来，便于追溯。</p>
+<h3 id="_48">动手：三层练习</h3>
+<ol>
+<li><strong>读懂：</strong>画出数据流，解释每个函数的输入、输出与调用顺序。</li>
+<li><strong>修改：</strong>把及格线改为参数，允许使用 70 分，并补一个检查样例。</li>
+<li><strong>扩展：</strong>增加班级字段，按班级生成汇总；先写预期输出，再让 AI 协助实现。</li>
+</ol>
+<p>验收时请回答：空数据怎样处理？非法数据去了哪里？报告保存在何处？哪些规则由你决定，哪些代码由 AI 协助编写？</p>
+<h2 id="17">17 · 基础地图与课后索引</h2>
+<h3 id="_49">学完本章，需要能说明这些关系</h3>
+<pre><code class="language-text">数据：值 → 类型 → 变量 → 容器 → 多条记录
+规则：表达式 → 条件 → 循环
+组织：函数 → 模块 → 包；对象与类
+连接：文件 → CSV / JSON → 第三方库 → API
+质量：报错 → 调试 → 输入校验 → 测试 → 可复查的交付
+协作：明确需求 → AI 辅助 → 人工理解与验证
+</code></pre>
+<h3 id="_50">基础覆盖核对</h3>
+<table>
+<thead>
+<tr>
+<th>领域</th>
+<th>本章保留的内容</th>
+<th>阅读位置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>执行模型</td>
+<td>解释器、脚本、Notebook、顺序、缩进、注释</td>
+<td>01</td>
+</tr>
+<tr>
+<td>数据</td>
+<td>变量、基本类型、转换、真假、None、浮点误差</td>
+<td>02～03</td>
+</tr>
+<tr>
+<td>表达式</td>
+<td>算术、比较、逻辑、成员、身份、格式化、索引切片</td>
+<td>03</td>
+</tr>
+<tr>
+<td>容器</td>
+<td>列表、元组、字典、集合、嵌套、修改、复制</td>
+<td>04</td>
+</tr>
+<tr>
+<td>控制流</td>
+<td>条件、循环、range、break、continue、pass、推导式</td>
+<td>05～06</td>
+</tr>
+<tr>
+<td>函数</td>
+<td>定义、调用、参数、返回、作用域、默认值、类型提示</td>
+<td>07</td>
+</tr>
+<tr>
+<td>对象</td>
+<td>属性、方法、类、实例、self；面向对象后续入口</td>
+<td>08</td>
+</tr>
+<tr>
+<td>环境</td>
+<td>模块、包、标准库、第三方库、安装、虚拟环境、入口</td>
+<td>09</td>
+</tr>
+<tr>
+<td>输入输出</td>
+<td>路径、读写、with、编码、CSV、JSON</td>
+<td>10</td>
+</tr>
+<tr>
+<td>质量</td>
+<td>异常、主动抛错、调试、边界、测试、口径</td>
+<td>11～12</td>
+</tr>
+<tr>
+<td>应用</td>
+<td>表格、图表、API、AI 调用与凭据</td>
+<td>13～14</td>
+</tr>
+<tr>
+<td>完整实践</td>
+<td>需求、协作、校验、汇总、输出、修改与验收</td>
+<td>15～16</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_51">后续主题：保留入口，避免首课失焦</h3>
+<p>以下内容有用，但不要求第一节课掌握：正则表达式、日期时区、生成器与迭代器、装饰器、上下文管理器实现、递归、继承与多态进阶、异步并发、数据库、Web 开发、打包发布、Git、专业测试框架与性能分析。它们应在后续任务需要时展开，不能把“看过一篇概览”当作已经掌握。</p>
+<h3 id="_52">自测：能否脱离讲义解释</h3>
+<ol>
+<li><code>=</code> 与 <code>==</code>、<code>==</code> 与 <code>is</code> 有什么区别？</li>
+<li>为什么 CSV 的分数需要转换类型？</li>
+<li>列表、字典分别如何表达学生数据？</li>
+<li>条件顺序为什么会改变结果？</li>
+<li><code>for</code> 和 <code>while</code> 如何选择？</li>
+<li><code>print</code> 与 <code>return</code> 有什么区别？</li>
+<li>为什么赋值一个列表不等于复制它？</li>
+<li>导入库和安装库分别发生在哪里？</li>
+<li>相对路径相对于什么位置？</li>
+<li>不报错的程序为什么仍可能错误？</li>
+<li>平均分与及格率的分母如何确定？</li>
+<li>AI 生成代码之后，你如何决定它可以交付？</li>
+</ol>
+<blockquote>
+<p>首课的完成标准：面对一个小程序，能够找到数据、规则、步骤、外部依赖与验证方法；允许查资料和求助 AI，但能够解释关键行为，并完成一次经过核对的修改。</p>
+</blockquote></main>
+<section id="assistant" aria-label="AI 代码讲解">
+<h2>AI 代码讲解</h2><p class="muted">DashScope · qwen-plus · 流式对话</p>
+<details open><summary>调用配置</summary><label for="key">百炼 API Key</label><input id="key" type="password" autocomplete="off" placeholder="sk-…（仅保留在当前页面内存）"><div class="row"><button id="forget" type="button">清空 KEY</button><button id="reconnect" type="button">重新连接</button></div><div><span id="connection" class="status" role="status">连接中…</span></div><p class="muted">当前接入为模型调用，代码会随问题发送至百炼。刷新后页面 KEY 清空。</p></details>
+<div id="context" class="context"></div><div class="quick"><button type="button" data-prompt="请用一个具体输入逐步解释当前代码。">走读代码</button><button type="button" data-prompt="这段代码有哪些边界情况？给出输入和预期结果。">检查边界</button><button type="button" data-prompt="请出一道类似的练习，先给提示，不要给答案。">给我练习</button><button id="clear" type="button">新对话</button></div>
+<div id="messages" role="log" aria-label="对话记录"></div><form id="chat-form"><label for="question">围绕当前代码提问</label><textarea id="question" required placeholder="这段代码中的 return 起什么作用？"></textarea><div class="row"><button id="send" type="submit">发送问题</button><span id="usage" class="status" role="status"></span></div></form>
+<details><summary>运行方式说明</summary><p class="run-note">“本机运行”会使用服务的 Python 执行当前代码，具有当前用户的文件与网络权限，并非安全沙箱。仅运行信任的练习代码。每次使用独立临时目录，最长 8 秒；文件不会在练习间保留，图形窗口不适合在此运行。第三方包使用服务所在环境。</p></details>
+</section><script src="vendor/highlight.js"></script><script src="vendor/marked.js"></script><script src="vendor/purify.js"></script><script src="tutorial.js"></script></body></html>

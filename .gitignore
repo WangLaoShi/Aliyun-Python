@@ -1,3 +1,12 @@
 .idea/*
 .DS_Store
 /.ipynb_checkpoints
+.cursor/
+.venv/
+__pycache__/
+**/__pycache__/
+*.py[cod]
+Untitled
+*.zip
+.lingma/
+PyExcelFunctionsImpl/dist/

@@ -1,0 +1,73 @@
+[build-system]
+requires = ["hatchling>=1.21.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "excel-funcs-py"
+version = "0.1.0"
+description = "Python implementations of common Microsoft Excel functions, layered API and Excel-like error values."
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.9"
+authors = [
+  { name = "PyExcelFunctionsImpl contributors" },
+]
+keywords = ["excel", "spreadsheet", "formula", "functions", "office"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Office/Business :: Financial :: Spreadsheet",
+  "Typing :: Typed",
+]
+
+[project.urls]
+Homepage = "https://github.com/your-org/PyExcelFunctionsImpl"
+Documentation = "https://github.com/your-org/PyExcelFunctionsImpl#readme"
+Repository = "https://github.com/your-org/PyExcelFunctionsImpl"
+Issues = "https://github.com/your-org/PyExcelFunctionsImpl/issues"
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=7.4.0",
+  "mypy>=1.5.0",
+  "ruff>=0.1.0",
+]
+numpy = [
+  "numpy>=1.24.0",
+]
+
+[tool.hatch.build.targets.wheel]
+only-include = ["excel_funcs"]
+
+[tool.hatch.build.targets.wheel.sources]
+"" = "src"
+
+[tool.hatch.build.targets.sdist]
+include = [
+  "/src",
+  "/docs",
+  "/demo",
+  "/tests",
+  "/README.md",
+  "/LICENSE",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.ruff]
+line-length = 100
+src = ["src", "tests"]
+
+[tool.mypy]
+python_version = "3.9"
+packages = ["excel_funcs"]
+strict = false

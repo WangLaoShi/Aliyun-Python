@@ -1,0 +1,26 @@
+<section id="usage-guide" class="usage-guide">
+<h2>开始之前 · 如何使用这个教程</h2>
+<p>左侧选章节，中间读代码、修改和运行，右侧向 AI 提问。阅读和本机运行不需要 API Key，AI 讲解需要百炼 API Key。</p>
+<ol>
+<li><strong>启动程序：</strong>首次使用在终端执行下面的命令。以后使用只需进入该目录并运行 <code>python3 server.py</code>。运行期间保持终端打开；按 Ctrl+C 会停止服务。</li>
+</ol>
+<pre><code class="language-bash">cd /Users/luosen/Documents/GitHub/Aliyun-Python/v2610
+python3 -m pip install -r requirements.txt
+python3 server.py</code></pre>
+<ol start="2">
+<li><strong>用正确地址打开：</strong>访问 <a href="http://127.0.0.1:8765/">http://127.0.0.1:8765/</a>。若页面右侧显示“本地服务已连接”，即可使用。直接双击 <code>index.html</code> 只能阅读。</li>
+<li><strong>配置 AI：</strong>在右侧“调用配置”填写百炼 API Key。KEY 只保留在当前页面，刷新后需重新填写；教师若配置了服务环境变量，则可留空。调用会把当前代码和问题发送至百炼，并产生账号对应的调用费用。</li>
+<li><strong>阅读与提问：</strong>点击示例上方“让 AI 解释”，再点击右侧“发送问题”。可以修改问题，或使用“走读代码”“检查边界”“给我练习”。同一段代码可以连续追问；切换代码会开始新对话。</li>
+<li><strong>修改与运行：</strong>代码框可以直接编辑，点击“本机运行”查看结果。“还原”恢复原始示例。如果有 <code>input()</code>，先展开“标准输入”填写内容，每行一个。每段代码独立运行，前文定义的变量不会自动保留。</li>
+</ol>
+<details><summary>遇到问题怎么办？</summary>
+<table><thead><tr><th>现象</th><th>原因与处理</th></tr></thead><tbody>
+<tr><td>“请从本地教学服务重新打开页面”</td><td>页面的连接凭证已失效，通常是服务重启后旧页面仍打开。新版会自动重新连接；旧版请刷新页面，KEY 需重新填写。这不是百炼 API Key 错误。</td></tr>
+<tr><td>服务未连接 / 无法访问</td><td>确认终端中的 <code>server.py</code> 仍在运行，且页面端口与终端显示一致。若服务停止，请重新启动，再点击右侧“重新连接”。</td></tr>
+<tr><td>百炼返回 401、403 或模型权限错误</td><td>检查百炼 KEY、服务地域、账号权限和额度。这里是远程平台错误，与本地连接凭证不同。</td></tr>
+<tr><td>NameError / 缺少变量</td><td>有些代码是承接前文的片段，请把需要的变量定义一并补入当前代码框。</td></tr>
+<tr><td>ModuleNotFoundError</td><td>把依赖安装到启动服务所用的同一个 Python 环境。</td></tr>
+<tr><td>超过 8 秒停止</td><td>检查是否有无限循环，输入是否提前填写；图形窗口和长期交互任务请在编辑器中运行。</td></tr>
+</tbody></table></details>
+<p class="run-note">运行发生在本机，具有当前用户权限，仅运行信任的练习。相对路径文件放在临时目录，每次运行后清理；本工具只供本机使用。</p>
+</section>

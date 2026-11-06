@@ -1,0 +1,2 @@
+markdown>=3.6,<4
+dashscope>=1.20,<2

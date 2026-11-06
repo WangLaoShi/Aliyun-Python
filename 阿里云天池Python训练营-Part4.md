@@ -168,7 +168,9 @@ def main():
     # 给对象发 study 消息
     stu1.study('Python 程序设计')
     # 给对象发 watch_av 消息
-    stu1.watch_movie()stu2 = Student('王大锤', 15)
+    stu1.watch_movie()
+
+    stu2 = Student('王大锤', 15)
     stu2.study('思想品德')
     stu2.watch_movie()
 
@@ -441,7 +443,8 @@ class Point(object):
 
 def main():
     p1 = Point(3, 5)
-    p2 = Point()print(p1)
+    p2 = Point()
+    print(p1)
     print(p2)
     p2.move_by(-1, 2)
     print(p2)

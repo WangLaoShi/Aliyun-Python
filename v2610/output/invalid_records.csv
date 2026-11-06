@@ -1,0 +1,3 @@
+﻿row,name,raw_score,reason
+5,小许,缺考,could not convert string to float: '缺考'
+6,小郑,101,分数必须是 0～100 之间的有限数
