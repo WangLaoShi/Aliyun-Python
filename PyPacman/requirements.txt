@@ -1,0 +1,2 @@
+# PyPacman 仅依赖 pygame（见 README 与源码 import）
+pygame>=2.5.0
