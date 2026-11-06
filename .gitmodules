@@ -1,3 +1,6 @@
 [submodule "v2610/workbuddy/python-learning-coach"]
 	path = v2610/workbuddy/python-learning-coach
 	url = git@github.com:WangLaoShi/python-learning-coach.git
+[submodule "PyPacman"]
+	path = PyPacman
+	url = git@github.com:WangLaoShi/PyPacman.git
